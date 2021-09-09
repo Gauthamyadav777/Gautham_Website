@@ -30,7 +30,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
+    new CssMinimizerPlugin({
       filename: "[name].[contenthash].css",
     }),
   ],
@@ -39,7 +39,7 @@ module.exports = merge(common, {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader, //3. Extract css into files
+          CssMinimizerPlugin.loader, //3. Extract css into files
           "css-loader", //2. Turns css into commonjs
           "sass-loader", //1. Turns sass into css
         ],
