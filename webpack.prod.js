@@ -30,7 +30,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CssMinimizerPlugin({
+    new CssMinimizerPlugin(),
+    new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
   ],
@@ -39,11 +40,18 @@ module.exports = merge(common, {
       {
         test: /\.scss$/,
         use: [
-          CssMinimizerPlugin.loader, //3. Extract css into files
+          MiniCssExtractPlugin.loader, //3. Extract css into files
           "css-loader", //2. Turns css into commonjs
           "sass-loader", //1. Turns sass into css
         ],
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      new CssMinimizerPlugin(),
     ],
   },
 });
