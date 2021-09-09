@@ -14,6 +14,7 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, "dist"),
   },
   optimization: {
+    minimize: true,
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin(),
