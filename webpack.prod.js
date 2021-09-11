@@ -14,25 +14,22 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, "dist"),
   },
   optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(),
-      new TerserPlugin(),
-      new HtmlWebpackPlugin({
-        template: "./src/index.html",
-        favicon: "./src/assets/favicon.png",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true,
-        },
-      }),
-    ],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CssMinimizerPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      favicon: "./src/assets/favicon.png",
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
     }),
   ],
   module: {
